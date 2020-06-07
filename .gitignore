@@ -3,3 +3,5 @@ node_modules/
 
 # folder with diffrent useless files
 OTHER/
+
+package-lock.json
