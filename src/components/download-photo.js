@@ -23,8 +23,9 @@ class DownloadPhoto extends Component {
       Autf();
     };
 
-    // this.props.autf();
-    this.props.autfToken();
+    if (this.props.token === null) {
+      this.props.autfToken();
+    }
 
     this.props.fetchData(this.props.page);
     this.scrollListener = window.addEventListener('scroll', (e) => {

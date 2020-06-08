@@ -38685,9 +38685,12 @@ var DownloadPhoto = /*#__PURE__*/function (_Component) {
         Object(_components_autf__WEBPACK_IMPORTED_MODULE_4__["default"])();
       }
 
-      ; // this.props.autf();
+      ;
 
-      this.props.autfToken();
+      if (this.props.token === null) {
+        this.props.autfToken();
+      }
+
       this.props.fetchData(this.props.page);
       this.scrollListener = window.addEventListener('scroll', function (e) {
         _this.handleScroll(e);
