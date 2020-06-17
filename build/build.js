@@ -38825,15 +38825,15 @@ var PhotoPrevew = /*#__PURE__*/function (_Component) {
           className: "nameAuthor"
         }, photo.user.name))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "like"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "imgLike"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           onClick: function onClick() {
             return _this.props.likePhoto(_this.props.token, photo.id);
           }
-        }, "LIKE"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "imgLike"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: "./src/img/heart.png"
-        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "qntLikes"
         }, photo.likes))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "photo"

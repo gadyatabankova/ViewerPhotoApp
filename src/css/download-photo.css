@@ -52,6 +52,14 @@
   margin-right: 10px;
 }
 
+.imgLike button {
+    padding: 0;
+    border: 0;
+    margin-left: 10px;
+    outline: none;
+    background-color: transparent;
+}
+
 .info {
   display: flex;
   justify-content: space-between;

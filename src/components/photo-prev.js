@@ -43,9 +43,10 @@ class PhotoPrevew extends Component {
                     </div>
 
                     <div className='like'>
-                      <button onClick={() => this.props.likePhoto(this.props.token, photo.id)}>LIKE</button>
                       <div className='imgLike'>
-                        <img src="./src/img/heart.png" />
+                          <button onClick={() => this.props.likePhoto(this.props.token, photo.id)}>
+                            <img src="./src/img/heart.png" />
+                          </button>
                       </div>
                       <div className='qntLikes'>{photo.likes}</div>
                     </div>
