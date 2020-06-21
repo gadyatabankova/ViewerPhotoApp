@@ -39,13 +39,19 @@ export function itemsFetchDataSuccess(items) {
   };
 }
 
-export function itemsFetchData(page, perPage, orderBy) {
+export function itemsFetchData(page, token) {
+
+  console.log('BARRERTOKEN');
+  console.log('page', page);
+  console.log('token', token);
+  unsplash.auth.setBearerToken(token);
+
   return (dispatch) => {
     dispatch(itemsIsLoading(true));
 
     dispatch(scrolling(true));
 
-    unsplash.photos.listPhotos(page, perPage, orderBy)
+    unsplash.photos.listPhotos(page)
       .then((response) => {
         if (!response.ok) {
           throw Error(response.statusText);

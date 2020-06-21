@@ -19,6 +19,7 @@
   grid-auto-rows: min-content;
   position: relative;
   overflow: auto;
+  margin-top: 60px;
 }
 
 .photoItem {
@@ -192,5 +193,36 @@
 .publishedShow :first-child {
     margin-right: 10px;
     font-weight: bold;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  z-index: 5;
+  height: 60px;
+  top: 0;
+  background-color: white;
+  width: 98%;
+  border-bottom: solid 2px black;
+  border-radius: 10px;
+}
+
+.block1 {
+  margin-top: 80px;
+}
+
+.header button {
+  margin-right: 20px;
+  background: transparent;
+  height: 30px;
+  width: 120px;
+  font-weight: bold;
+}
+
+.header img {
+  margin-left: 20px;
+  height: 45px;
 }
 

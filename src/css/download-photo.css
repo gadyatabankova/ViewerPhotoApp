@@ -19,6 +19,7 @@
   grid-auto-rows: min-content;
   position: relative;
   overflow: auto;
+  margin-top: 60px;
 }
 
 .photoItem {

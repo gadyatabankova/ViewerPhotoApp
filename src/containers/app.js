@@ -5,6 +5,7 @@ import { likePhoto, autfToken} from '../actions/like';
 
 import DownloadPhoto from '../components/download-photo';
 import ShowPhoto from '../components/photo-show';
+import Header from '../components/header';
 
 let App = (props) => {
     const {
@@ -15,7 +16,11 @@ let App = (props) => {
     console.log('page', page);
 
     return (
+
         <div className="block1">
+            <Header
+              
+            />
             <DownloadPhoto
               likePhoto={likePhoto}
               fetchData={fetchData}

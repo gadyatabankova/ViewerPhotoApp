@@ -50,7 +50,7 @@ export function likePhoto(token, id) {
 
   console.log("ID", id);
   console.log("TOKEN", token);
-  const code = location.search.split('code=')[1];
+  // const code = location.search.split('code=')[1];
 
   return (dispatch) => {
 

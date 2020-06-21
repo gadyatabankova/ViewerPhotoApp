@@ -99,7 +99,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(72);
 /* harmony import */ var connected_react_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(49);
 /* harmony import */ var _containers_app__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(73);
-/* harmony import */ var _components_photo__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(102);
+/* harmony import */ var _components_photo__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(104);
 
 
 
@@ -35790,6 +35790,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_like__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(93);
 /* harmony import */ var _components_download_photo__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(94);
 /* harmony import */ var _components_photo_show__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(99);
+/* harmony import */ var _components_header__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(102);
+
 
 
 
@@ -35817,7 +35819,7 @@ var App = function App(props) {
   console.log('page', page);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "block1"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_download_photo__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_header__WEBPACK_IMPORTED_MODULE_6__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_download_photo__WEBPACK_IMPORTED_MODULE_4__["default"], {
     likePhoto: _likePhoto,
     fetchData: fetchData,
     items: items,
@@ -35932,11 +35934,15 @@ function itemsFetchDataSuccess(items) {
     items: items
   };
 }
-function itemsFetchData(page, perPage, orderBy) {
+function itemsFetchData(page, token) {
+  console.log('BARRERTOKEN');
+  console.log('page', page);
+  console.log('token', token);
+  unsplash.auth.setBearerToken(token);
   return function (dispatch) {
     dispatch(itemsIsLoading(true));
     dispatch(scrolling(true));
-    unsplash.photos.listPhotos(page, perPage, orderBy).then(function (response) {
+    unsplash.photos.listPhotos(page).then(function (response) {
       if (!response.ok) {
         throw Error(response.statusText);
       }
@@ -38602,8 +38608,8 @@ function getToken(token) {
 }
 function likePhoto(token, id) {
   console.log("ID", id);
-  console.log("TOKEN", token);
-  var code = location.search.split('code=')[1];
+  console.log("TOKEN", token); // const code = location.search.split('code=')[1];
+
   return function (dispatch) {
     unsplash.auth.setBearerToken(token);
     return unsplash.photos.likePhoto(id).then(function (res) {
@@ -38691,7 +38697,7 @@ var DownloadPhoto = /*#__PURE__*/function (_Component) {
         this.props.autfToken();
       }
 
-      this.props.fetchData(this.props.page);
+      this.props.fetchData(this.props.page, this.props.token);
       this.scrollListener = window.addEventListener('scroll', function (e) {
         _this.handleScroll(e);
       });
@@ -38889,6 +38895,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Autf; });
 /* harmony import */ var unsplash_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(75);
 /* harmony import */ var unsplash_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(unsplash_js__WEBPACK_IMPORTED_MODULE_0__);
+ // import { autfToken } from '../actions/like';
 
 var unsplash = new unsplash_js__WEBPACK_IMPORTED_MODULE_0___default.a({
   accessKey: "7Hl_-lhdVSrXSwnayqLBOpquMP_81ErK_zur6YkKx6M",
@@ -38899,7 +38906,22 @@ var authenticationUrl = unsplash.auth.getAuthenticationUrl(["public", "write_lik
 function Autf() {
   location.assign(authenticationUrl);
   var autfCode = location.search.split('code=')[1];
-  console.log('CODE', autfCode);
+  console.log('CODE', autfCode); // let token = JSON.parse(localStorage.getItem('token2'));
+  // if ((!token || token.error) && code) {
+  //   autfToken(code, (json) => {
+  //     if (!json.error) {
+  //       localSorage.setItem('token2', JSON.stringify(json))
+  //       handler(json);
+  //     } else {
+  //       handler(null)
+  //     }
+  //   })
+  // } else if (token && !token.error) {
+  //   unsplash.auth.setBearerToken(token.access_token);
+  //   handler(token);
+  // } else {
+  //   handler(null);
+  // }
 }
 
 /***/ }),
@@ -39057,6 +39079,88 @@ var Portal = /*#__PURE__*/function (_Component) {
 
 /***/ }),
 /* 102 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(14);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_autf__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(98);
+/* harmony import */ var _css_header_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(103);
+/* harmony import */ var _css_header_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_css_header_css__WEBPACK_IMPORTED_MODULE_3__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+ // import PhotoPrevew from '../components/photo-prev';
+//
+// import Transform from '../components/transform-func';
+
+
+
+
+var Header = /*#__PURE__*/function (_Component) {
+  _inherits(Header, _Component);
+
+  function Header() {
+    _classCallCheck(this, Header);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Header).apply(this, arguments));
+  }
+
+  _createClass(Header, [{
+    key: "logOutButton",
+    value: function logOutButton() {
+      console.log("EXIT");
+      window.location.assign("https://unsplash.com/oauth/login");
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this = this;
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
+        className: "header"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "./src/img/binoculars.png"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: function onClick() {
+          return _this.logOutButton();
+        }
+      }, "LOG OUT"));
+    }
+  }]);
+
+  return Header;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (Header);
+
+/***/ }),
+/* 103 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+/* 104 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
