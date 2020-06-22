@@ -41,7 +41,7 @@ class DownloadPhoto extends Component {
       const bottomOffset = 20;
       if (pageOffset > lastPicOffset - bottomOffset) {
         this.props.loadMore(this.props.page);
-        this.props.fetchData(this.props.page);
+        this.props.fetchData(this.props.page, this.props.token);
       }
   }
 

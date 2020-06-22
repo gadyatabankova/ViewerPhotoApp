@@ -38713,7 +38713,7 @@ var DownloadPhoto = /*#__PURE__*/function (_Component) {
 
       if (pageOffset > lastPicOffset - bottomOffset) {
         this.props.loadMore(this.props.page);
-        this.props.fetchData(this.props.page);
+        this.props.fetchData(this.props.page, this.props.token);
       }
     }
   }, {

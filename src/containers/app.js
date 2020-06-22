@@ -19,7 +19,7 @@ let App = (props) => {
 
         <div className="block1">
             <Header
-              
+
             />
             <DownloadPhoto
               likePhoto={likePhoto}
