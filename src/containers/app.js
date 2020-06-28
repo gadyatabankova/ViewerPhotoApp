@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { itemsFetchData, itemsIncrPage, scrolling, openModalWindow, getTargetId } from '../actions/items';
-import { likePhoto, autfToken} from '../actions/like';
+import { itemsFetchData, itemsIncrPage, scrolling, openModalWindow, getTargetId, getLogin, getOut } from '../actions/items';
+import { likePhoto, autfToken } from '../actions/like';
 
 import DownloadPhoto from '../components/download-photo';
 import ShowPhoto from '../components/photo-show';
@@ -9,7 +9,7 @@ import Header from '../components/header';
 
 let App = (props) => {
     const {
-      items, itemsHasErrored, itemsIsLoading, fetchData, likePhoto, ownProps, page, loadMore, scrolling, openModal, isOpen, getTargetId, targetId, token, autfToken
+      items, itemsHasErrored, itemsIsLoading, fetchData, likePhoto, ownProps, page, loadMore, scrolling, openModal, isOpen, getTargetId, targetId, token, autfToken, getLogin, login, getOut
     } = props;
 
     console.log('OwProps', ownProps);
@@ -19,9 +19,14 @@ let App = (props) => {
 
         <div className="block1">
             <Header
-
+              getLogin={getLogin}
+              login={login}
+              getOut={getOut}
+              token={token}
             />
             <DownloadPhoto
+              login={login}
+              getLogin={getLogin}
               likePhoto={likePhoto}
               fetchData={fetchData}
               items={items}
@@ -34,7 +39,6 @@ let App = (props) => {
               getTargetId={getTargetId}
               token={token}
               autfToken={autfToken}
-
             />
             <ShowPhoto
               isOpen={isOpen}
@@ -43,7 +47,7 @@ let App = (props) => {
                 const el = document.querySelector('body');
                 el.classList.remove('modal');
               }}
-              likePhoto = {() => likePhoto(token, targetId)}
+              likePhoto = {likePhoto}
               targetId={targetId}
               token={token}
             />
@@ -53,6 +57,7 @@ let App = (props) => {
 
 const mapStateToProps = (state, ownProps) => {
     return {
+        login: state.login,
         token: state.token,
         targetId: state.targetId,
         isOpen: state.isOpen,
@@ -68,11 +73,13 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchData: (page, perPage, orderBy) => dispatch(itemsFetchData(page, perPage, orderBy)),
-        likePhoto: (id, token) => dispatch(likePhoto(id, token)),
+        likePhoto: (id, token, liked_by_user) => dispatch(likePhoto(id, token, liked_by_user)),
         loadMore: (page) => dispatch(itemsIncrPage(page)),
         openModal: (bool) => dispatch(openModalWindow(bool)),
         getTargetId: (id) => dispatch(getTargetId(id)),
-        autfToken: (code) => dispatch(autfToken(code)),
+        autfToken: () => dispatch(autfToken()),
+        getLogin: (bool) => dispatch(getLogin(bool)),
+        getOut: () => dispatch(getOut()),
     };
 }
 

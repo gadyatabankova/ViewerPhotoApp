@@ -15,22 +15,25 @@ class DownloadPhoto extends Component {
 
   componentDidMount() {
     console.log('componentDidMount');
-
     const code = location.search.split('code=')[1];
     console.log('CODE', code);
 
-    if (code === undefined) {
-      Autf();
-    };
-
-    if (this.props.token === null) {
+    if (code && this.props.token === null) {
       this.props.autfToken();
-    }
-
+    };
     this.props.fetchData(this.props.page, this.props.token);
     this.scrollListener = window.addEventListener('scroll', (e) => {
       this.handleScroll(e);
     });
+  }
+
+  componentDidUpdate() {
+    console.log('componentDidUpdate');
+    const code = location.search.split('code=')[1];
+    console.log('CODE', code);
+    if (this.props.login && code === undefined) {
+      Autf();
+    }
   }
 
   handleScroll(e) {

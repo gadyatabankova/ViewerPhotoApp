@@ -61,6 +61,12 @@
     background-color: transparent;
 }
 
+.imgLike img {
+  width: 32px;
+  height: 32px;
+}
+
+
 .info {
   display: flex;
   justify-content: space-between;

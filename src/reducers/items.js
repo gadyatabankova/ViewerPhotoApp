@@ -1,16 +1,20 @@
-// export function code(state = null, action) {
-//   switch (action.type) {
-//     case 'CODE':
-//       return action.code;
-//
-//     default:
-//       return state;
-//   }
-// }
+export function login(state = false, action) {
+  switch (action.type) {
+    case 'GET_LOGIN':
+      return action.login;
+
+    default:
+      return state;
+  }
+}
+
 
 export function token(state = null, action) {
   switch (action.type) {
     case 'GET_TOKEN':
+      return action.token;
+
+    case 'GET_OUT':
       return action.token;
 
     default:
@@ -75,7 +79,7 @@ export function items(state = [], action) {
       console.log('state', state);
       return state.map(item => {
         if (item.id === action.id) {
-          return { ...item, likes: action.likes }
+          return { ...item, likes: action.likes, liked_by_user: action.liked_by_user }
         }
           return item
         })

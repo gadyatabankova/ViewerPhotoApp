@@ -11,6 +11,20 @@ const authenticationUrl = unsplash.auth.getAuthenticationUrl([
   "write_likes"
 ]);
 
+export function getOut() {
+  return {
+    type: 'GET_OUT',
+    token: null
+  };
+}
+
+export function getLogin(bool) {
+  return {
+    type: 'GET_LOGIN',
+    login: bool
+  };
+}
+
 export function itemsHasErrored(bool) {
   return {
     type: 'ITEMS_HAS_ERRORED',
@@ -44,7 +58,10 @@ export function itemsFetchData(page, token) {
   console.log('BARRERTOKEN');
   console.log('page', page);
   console.log('token', token);
-  unsplash.auth.setBearerToken(token);
+
+  if (token != null) {
+    unsplash.auth.setBearerToken(token);
+  }
 
   return (dispatch) => {
     dispatch(itemsIsLoading(true));
