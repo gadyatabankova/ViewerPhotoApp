@@ -10,6 +10,7 @@ class Header extends Component {
   logOutButton() {
     console.log("EXIT");
     this.props.getOut();
+    localStorage.clear();
     window.location.assign("http://viewerphoto.ru/");
     // https://unsplash.com/oauth/login
     // Autf();
@@ -20,8 +21,8 @@ class Header extends Component {
     return (
           <header className='header'>
             <img src="./src/img/binoculars.png" />
-            <button onClick={() => this.props.getLogin(true)}>LOG IN</button>
-            <button onClick={() => this.logOutButton()}>LOG OUT</button>
+            <button id='logIn' onClick={() => this.props.getLogin(true)}>LOG IN</button>
+            <button id='logOut' className='hidden' onClick={() => this.logOutButton()}>LOG OUT</button>
           </header>
     )
   }

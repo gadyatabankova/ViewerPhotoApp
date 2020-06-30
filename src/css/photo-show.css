@@ -67,6 +67,7 @@
     border: 0;
     margin-left: 10px;
     outline: none;
+    background-color: transparent;
 }
 
 .buttonLike {

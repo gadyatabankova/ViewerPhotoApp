@@ -21,6 +21,7 @@ class DownloadPhoto extends Component {
     if (code && this.props.token === null) {
       this.props.autfToken();
     };
+
     this.props.fetchData(this.props.page, this.props.token);
     this.scrollListener = window.addEventListener('scroll', (e) => {
       this.handleScroll(e);
@@ -33,6 +34,12 @@ class DownloadPhoto extends Component {
     console.log('CODE', code);
     if (this.props.login && code === undefined) {
       Autf();
+    }
+    if (this.props.token != null) {
+      const elButIn = document.getElementById('logIn');
+      elButIn.classList.add('hidden');
+      const elButOut = document.getElementById('logOut');
+      elButOut.classList.remove('hidden');
     }
   }
 

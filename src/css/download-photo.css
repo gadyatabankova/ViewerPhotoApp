@@ -1,7 +1,6 @@
-/* .fixed {
-  position: fixed;
-  width: 100%;
-} */
+.hidden2 {
+  display: none;
+}
 
 .modal {
   overflow: hidden;

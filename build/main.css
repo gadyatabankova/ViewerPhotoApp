@@ -1,7 +1,6 @@
-/* .fixed {
-  position: fixed;
-  width: 100%;
-} */
+.hidden2 {
+  display: none;
+}
 
 .modal {
   overflow: hidden;
@@ -167,6 +166,7 @@
     border: 0;
     margin-left: 10px;
     outline: none;
+    background-color: transparent;
 }
 
 .buttonLike {
@@ -230,5 +230,9 @@
 .header img {
   margin-left: 20px;
   height: 45px;
+}
+
+.hidden {
+  display: none;
 }
 

@@ -28,3 +28,7 @@
   margin-left: 20px;
   height: 45px;
 }
+
+.hidden {
+  display: none;
+}

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import Portal from '../components/portal';
 import Transform from '../components/transform-func';
 import ChangeSrcPic2 from '../components/changeSrcPic2';
+import ChangeClass from '../components/changeClass';
 
 import '../css/photo-show.css';
 
@@ -34,7 +35,7 @@ const ShowPhoto = (props) => {
                         <div className='buttonLike'>
                             <span className='qntLikesShow'>{props.photo.likes}</span>
                             <span>
-                                <button onClick={() => {
+                                <button className={ChangeClass(props.token)} onClick={() => {
                                   props.likePhoto(props.token, props.targetId, props.photo.liked_by_user)}}>
                                     <img id="pic2" src={ChangeSrcPic2(props.photo.liked_by_user)}/>
                                 </button>

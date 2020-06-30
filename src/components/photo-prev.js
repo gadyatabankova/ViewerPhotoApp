@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Transform from '../components/transform-func';
 import ChangeSrcPic1 from '../components/changeSrcPic1';
+import ChangeClass from '../components/changeClass';
 
 import '../css/download-photo.css';
 
@@ -45,7 +46,7 @@ class PhotoPrevew extends Component {
 
                     <div className='like'>
                       <div className='imgLike'>
-                          <button onClick={() => this.props.likePhoto(this.props.token, photo.id, photo.liked_by_user)}>
+                          <button className={ChangeClass(this.props.token)} onClick={() => this.props.likePhoto(this.props.token, photo.id, photo.liked_by_user)}>
                             <img id="pic1" src={ChangeSrcPic1(photo.liked_by_user)} />
                           </button>
                       </div>
