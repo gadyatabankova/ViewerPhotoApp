@@ -1,6 +1,9 @@
+import { GET_OUT, GET_LOGIN, ITEMS_HAS_ERRORED, ITEMS_IS_LOADING, SCROLLING, ITEMS_FETCH_DATA_SUCCESS, ITEMS_INCR_PAGE, OPEN_MODAL_WINDOW, GET_TARGET_ID } from "../actions/items";
+import { GET_TOKEN, GET_NEW_LIKE } from "../actions/like";
+
 export function login(state = false, action) {
   switch (action.type) {
-    case 'GET_LOGIN':
+    case GET_LOGIN:
       return action.login;
 
     default:
@@ -8,13 +11,12 @@ export function login(state = false, action) {
   }
 }
 
-
 export function token(state = null, action) {
   switch (action.type) {
-    case 'GET_TOKEN':
+    case GET_TOKEN:
       return action.token;
 
-    case 'GET_OUT':
+    case GET_OUT:
       return action.token;
 
     default:
@@ -22,10 +24,9 @@ export function token(state = null, action) {
   }
 }
 
-
 export function itemsHasErrored(state = false, action) {
   switch (action.type) {
-    case 'ITEMS_HAS_ERRORED':
+    case ITEMS_HAS_ERRORED:
       return action.itemsHasErrored;
 
     default:
@@ -35,7 +36,7 @@ export function itemsHasErrored(state = false, action) {
 
 export function itemsIsLoading(state = false, action) {
   switch (action.type) {
-    case 'ITEMS_IS_LOADING':
+    case ITEMS_IS_LOADING:
       return action.itemsIsLoading;
 
     default:
@@ -45,8 +46,7 @@ export function itemsIsLoading(state = false, action) {
 
 export function scrolling(state = false, action) {
   switch (action.type) {
-    case 'SCROLLING':
-      console.log('action.scrolling', action.scrolling);
+    case SCROLLING:
       return action.scrolling;
 
     default:
@@ -56,8 +56,7 @@ export function scrolling(state = false, action) {
 
 export function items(state = [], action) {
   switch (action.type) {
-
-    case 'ITEMS_FETCH_DATA_SUCCESS':
+    case ITEMS_FETCH_DATA_SUCCESS:
       console.log('action.items', action.items);
       console.log('state', state);
 
@@ -72,8 +71,7 @@ export function items(state = [], action) {
       console.log('newActionItems', newAction);
       return [ ...state, ...newAction ]
 
-
-    case 'GET_NEW_LIKE':
+    case GET_NEW_LIKE:
       console.log('action.id', action.id);
       console.log('action.likes', action.likes);
       console.log('state', state);
@@ -91,7 +89,7 @@ export function items(state = [], action) {
 
 export function page(state = 1, action) {
   switch (action.type) {
-    case 'ITEMS_INCR_PAGE':
+    case ITEMS_INCR_PAGE:
       console.log('action.page', action.page);
       console.log('state', state);
       return action.page
@@ -103,7 +101,7 @@ export function page(state = 1, action) {
 
 export function isOpen(state = false, action) {
   switch (action.type) {
-    case 'OPEN_MODAL_WINDOW':
+    case OPEN_MODAL_WINDOW:
       return action.isOpen
 
     default:
@@ -113,7 +111,7 @@ export function isOpen(state = false, action) {
 
 export function targetId(state = null, action) {
   switch (action.type) {
-    case 'GET_TARGET_ID':
+    case GET_TARGET_ID:
       return action.targetId
 
     default:

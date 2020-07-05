@@ -65,8 +65,4 @@ const mapStateToProps = (state, ownProps) => {
   };
 }
 
-// ShowPhoto.defaultProps = {
-//    isOpen: false,
-// };
-
 export default connect(mapStateToProps)(ShowPhoto);

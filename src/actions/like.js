@@ -1,15 +1,17 @@
-import Unsplash from 'unsplash-js';
+import { unsplash, authenticationUrl } from '../components/linkUnsplash';
 
-const unsplash = new Unsplash({
-  accessKey: "7Hl_-lhdVSrXSwnayqLBOpquMP_81ErK_zur6YkKx6M",
-  secret: "kIkhYPaHa6xocrquAYfT6nDpo7Jwv9qFphlia68YFeo",
-  callbackUrl: "http://viewerphoto.ru/"
-});
+export const GET_TOKEN = 'GET_TOKEN';
+export const GET_NEW_LIKE = 'GET_NEW_LIKE';
 
-const authenticationUrl = unsplash.auth.getAuthenticationUrl([
-  "public",
-  "write_likes"
-]);
+export const getToken = (token) => ({type: GET_TOKEN, token: token.access_token});
+export const getNewLike = (item) => (
+  {
+    type: GET_NEW_LIKE,
+    id: item.photo.id,
+    likes: item.photo.likes,
+    liked_by_user: item.photo.liked_by_user
+  }
+);
 
 export function autfToken() {
 
@@ -25,14 +27,7 @@ export function autfToken() {
         return dispatch(getToken(token))
       });
   }
-}
-
-export function getToken(token) {
-  return {
-    type: 'GET_TOKEN',
-    token: token.access_token
-  };
-}
+};
 
 export function likePhoto(token, id, liked_by_user) {
 
@@ -64,13 +59,4 @@ export function likePhoto(token, id, liked_by_user) {
       }
 
   }
-}
-
-export function getNewLike(item) {
-  return {
-    type: 'GET_NEW_LIKE',
-      id: item.photo.id,
-      likes: item.photo.likes,
-      liked_by_user: item.photo.liked_by_user
-  };
-}
+};

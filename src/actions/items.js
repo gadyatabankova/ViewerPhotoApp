@@ -1,57 +1,24 @@
-import Unsplash from 'unsplash-js';
+import { unsplash, authenticationUrl } from '../components/linkUnsplash';
 
-const unsplash = new Unsplash({
-  accessKey: "7Hl_-lhdVSrXSwnayqLBOpquMP_81ErK_zur6YkKx6M",
-  secret: "kIkhYPaHa6xocrquAYfT6nDpo7Jwv9qFphlia68YFeo",
-  callbackUrl: "http://viewerphoto.ru/"
-});
+export const GET_OUT = 'GET_OUT';
+export const GET_LOGIN = 'GET_LOGIN';
+export const ITEMS_HAS_ERRORED = 'ITEMS_HAS_ERRORED';
+export const ITEMS_IS_LOADING = 'ITEMS_IS_LOADING';
+export const SCROLLING = 'SCROLLING';
+export const ITEMS_FETCH_DATA_SUCCESS = 'ITEMS_FETCH_DATA_SUCCESS';
+export const ITEMS_INCR_PAGE = 'ITEMS_INCR_PAGE';
+export const OPEN_MODAL_WINDOW = 'OPEN_MODAL_WINDOW';
+export const GET_TARGET_ID = 'GET_TARGET_ID';
 
-const authenticationUrl = unsplash.auth.getAuthenticationUrl([
-  "public",
-  "write_likes"
-]);
-
-export function getOut() {
-  return {
-    type: 'GET_OUT',
-    token: null
-  };
-}
-
-export function getLogin(bool) {
-  return {
-    type: 'GET_LOGIN',
-    login: bool
-  };
-}
-
-export function itemsHasErrored(bool) {
-  return {
-    type: 'ITEMS_HAS_ERRORED',
-    itemsHasErrored: bool
-  };
-}
-
-export function itemsIsLoading(bool) {
-  return {
-    type: 'ITEMS_IS_LOADING',
-    itemsIsLoading: bool
-  };
-}
-
-export function scrolling(bool) {
-  return {
-    type: 'SCROLLING',
-    scrolling: bool
-  };
-}
-
-export function itemsFetchDataSuccess(items) {
-  return {
-    type: 'ITEMS_FETCH_DATA_SUCCESS',
-    items
-  };
-}
+export const getOut = () => ({type: GET_OUT, token: null});
+export const getLogin = (bool) => ({type: GET_LOGIN, login: bool});
+export const itemsHasErrored = (bool) => ({type: ITEMS_HAS_ERRORED, itemsHasErrored: bool});
+export const itemsIsLoading = (bool) => ({type: ITEMS_IS_LOADING, itemsIsLoading: bool});
+export const scrolling = (bool) => ({type: SCROLLING, scrolling: bool});
+export const itemsFetchDataSuccess = (items) => ({type: ITEMS_FETCH_DATA_SUCCESS, items});
+export const itemsIncrPage = (page) => ({type: ITEMS_INCR_PAGE, page: page + 1});
+export const openModalWindow = (bool) => ({type: OPEN_MODAL_WINDOW, isOpen: bool});
+export const getTargetId = (id) => ({type: GET_TARGET_ID, targetId: id});
 
 export function itemsFetchData(page, token) {
 
@@ -90,25 +57,4 @@ export function itemsFetchData(page, token) {
       .catch(() => dispatch(itemsHasErrored(true)))
       .then(() => dispatch(scrolling(false)));
   };
-}
-
-export function itemsIncrPage(page) {
-  return {
-    type: 'ITEMS_INCR_PAGE',
-    page: page + 1
-  };
-}
-
-export function openModalWindow(bool) {
-  return {
-    type: 'OPEN_MODAL_WINDOW',
-    isOpen: bool
-  };
-}
-
-export function getTargetId(id) {
-  return {
-    type: 'GET_TARGET_ID',
-    targetId: id
-  }
-}
+};

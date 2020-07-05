@@ -12,8 +12,6 @@ class Header extends Component {
     this.props.getOut();
     localStorage.clear();
     window.location.assign("http://viewerphoto.ru/");
-    // https://unsplash.com/oauth/login
-    // Autf();
   }
 
   render() {
